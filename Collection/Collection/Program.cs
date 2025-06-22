@@ -11,17 +11,25 @@ public class Collection : ICollectionOperations
 {
     public void DictionaryOperations(Dictionary<string, int> dictionary)
     {
-        throw new NotImplementedException();
+        if (dictionary == null)
+        {
+            throw new ArgumentNullException(nameof(dictionary));
+        }
+
+        if (dictionary.ContainsKey("scuba") && dictionary["scuba"] == 6)
+        {
+            dictionary.Add("diver", 6);
+        }
     }
 
     public void ListOperations(List<string> list)
     {
         if (list == null)
         {
-            throw new ArgumentNullException();
+            throw new ArgumentNullException(nameof(list));
         }
 
-        if (list.Count != 0)
+        if (list.Count != 0 && list.Count % 2 == 1)
         {
             list.RemoveAt(list.Count / 2);
         }
@@ -44,7 +52,15 @@ public class Collection : ICollectionOperations
 
     public void StackOperations(Stack<DateTime> stack)
     {
-        throw new NotImplementedException();
+        if (stack == null)
+        {
+            throw new ArgumentNullException(nameof(stack));
+        }
+
+        if (stack.Count == 0 || stack.Peek() < DateTime.Now)
+        {
+            stack.Push(DateTime.Now);
+        }
     }
 }
 
